@@ -2143,7 +2143,7 @@
 						}).done(function (response, textStatus, xhr) {
 							$.cookie("token", xhr.getResponseHeader('authorization').split(' ')[1], { expires: 20 * 365, path: '/', domain: '.cityofeden.io' });
 							console.log(response);
-							window.location.replace('https://edn.cityofeden.io/');
+							window.location.replace('https://edn.cityofeden.io/?firstLogin=true');
 						});
 					});
 
