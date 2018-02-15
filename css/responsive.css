@@ -1,0 +1,140 @@
+@media (min-width: 1900px) {
+
+
+
+}
+
+@media (max-width: 767px) {
+
+.navigation_container .row {
+  margin: 0;
+}
+.navigation_area_scrolled .navigation_col {
+  display: none;
+}
+.slicknav_menu {
+  width: 100%;
+}
+.header_subscription input[type="email"] {
+  min-width: 200px;
+}
+.header_bottom_bg > p {
+  top: 25%;
+}
+.home_stairs_second .single_home_stairs {
+  padding-top: 40px;
+}
+.home_stairs_third .single_home_stairs {
+  padding-top: 30px;
+}
+.container.home_stairs {
+  padding-top: 30%;
+}
+.col-md-6.how_works_middle_left {
+  padding-left: 15px;
+}
+.how_works_middle_icons {
+  display: none;
+}
+.token_btn {
+  margin-bottom: 15px;
+  text-align: center;
+  width: 100%;
+}
+.token_represent_left {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.token_represent_right p span:first-child {
+  width: 125px;
+}
+.token_represent_right p span:nth-child(2) {
+  width: calc(100% - 125px);
+}
+.token_allocation_bg {
+  bottom: -130px;
+}
+.container.home_gravitas {
+  padding-top: 30px;
+}
+.single_home_pilot {
+  margin-bottom: 20px;
+}
+.edn_featured_div_left {
+  border-right: 0;
+  text-align: center;
+}
+.single_eden_3_feature {
+  margin-bottom: 20px;
+}
+.city_eden.container {
+  color: #000;
+}
+.city_eden_bg {
+  display: none;
+}
+.city_eden_area {
+  padding-bottom: 20px;
+}
+.home_press.container img {
+  margin-right: 25px;
+  max-width: 100px;
+}
+.staff_list .row {
+  margin-bottom: 0;
+}
+.staff_list.team .inner_box {
+  margin-bottom: 30px;
+}
+.eden_footer_area {
+  padding: 200px 0 50px;
+}
+.col-md-4.eden_footer_left {
+  margin-bottom: 30px;
+}
+.eden_footer .col-md-8 .row .col-md-4 {
+  margin-bottom: 20px;
+}
+.header_subscription input[type="text"] {
+  margin-bottom: 10px;
+  width: 275px;
+}
+.header_subscription input[type="number"] {
+  margin-bottom: 10px;
+}
+#edn_form_step3_submit {
+  margin-left: 0;
+}
+.navigation_col {
+  padding-right: 15px;
+}
+.how_works_middle_left .token_btn.token_pink_btn {
+  margin-right: 0;
+}
+.form_note .token_btn {
+  width: auto;
+}
+.stair_img {
+  left: 0px;
+}
+.container.home_stairs {
+  padding-top: 40%;
+}
+.card-header a {
+  padding: 15px 30px 15px 20px;
+  position: relative;
+}	
+.mb-0 span {
+  position: absolute;
+  right: 8px;
+  top: 18px;
+}
+
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+
+}
