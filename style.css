@@ -479,7 +479,7 @@ a.play_icon {
   text-align: center;
 }
 .home_press.container img {
-  margin-right: 50px;
+  max-width: 200px;
 }
 .home_press.container a {
   color: #ff1078;
@@ -1260,9 +1260,15 @@ a.play_icon {
 .eden_footer_left {
   text-align: center;
 }
-
-
-
+#edenInterview .modal-dialog {
+  max-width: unset;
+}
+#edenInterview {
+  padding-right: 0 !important;
+}
+.modal-body.edenInterview_modal_body {
+  text-align: center;
+}
 
 
 

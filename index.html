@@ -2109,68 +2109,73 @@
 				if (!match) return false;
 				return match[1];
 			}
+			function getUserData() {
+				var userData = {};
+				if(jQuery('.contribute_opensource').hasClass('selected')){
+					userData.open_source_contribution = 1;
+				}
+				else{
+					userData.open_source_contribution = 0;
+				}
+				if(jQuery('.contribute_media').hasClass('selected')){
+					userData.media_contribution = 1;
+				}
+				else{
+					userData.media_contribution = 0;
+				}
+				if(jQuery('.build_teams').hasClass('selected')){
+					userData.teams = 1;
+				}
+				else{
+					userData.teams = 0;
+				}
+				if(jQuery('.home_peer_review').hasClass('selected')){
+					userData.peer_review = 1;
+				}
+				else{
+					userData.peer_review = 0;
+				}
+				if(jQuery('.form_checkox_telegram').hasClass('selected')){
+					userData.telegram = 1;
+				}
+				else{
+					userData.telegram = 0;
+				}
+				if(jQuery('.form_get_whitelisted').hasClass('selected')){
+					userData.token_sale_whitelist = 1;
+				}
+				else{
+					userData.token_sale_whitelist = 0;
+				}
+				return userData;
+			}
 			jQuery('#edn_form_step3_submit').click(function (e) {
 				e.preventDefault();
 				var email = jQuery('#edn_input_email').val();
 				var name = jQuery('#edn_input_name').val();
 				var pass = jQuery('#edn_form_pass').val();
 				var participate = jQuery('#edn_contributes_input').val();
-				if(jQuery('.contribute_opensource').hasClass('selected')){
-					var open_source_contribution = 1;
-				}
-				else{
-					var open_source_contribution = 0;
-				}
-				if(jQuery('.contribute_media').hasClass('selected')){
-					var media_contribution = 1;
-				}
-				else{
-					var media_contribution = 0;
-				}
-				if(jQuery('.build_teams').hasClass('selected')){
-					var teams = 1;
-				}
-				else{
-					var teams = 0;
-				}
-				if(jQuery('.home_peer_review').hasClass('selected')){
-					var peer_review = 1;
-				}
-				else{
-					var peer_review = 0;
-				}
-				if(jQuery('.form_checkox_telegram').hasClass('selected')){
-					var telegram = 1;
-				}
-				else{
-					var telegram = 0;
-				}
-				if(jQuery('.form_get_whitelisted').hasClass('selected')){
-					var token_sale_whitelist = 1;
-				}
-				else{
-					var token_sale_whitelist = 0;
-				}
-				var contribute = jQuery('#edn_input_contribute').val();
+				var eth_to_contribute = jQuery('#edn_input_contribute').val();
 				var inviteCode = getInviteCode();
+				var userData = getUserData();
 				var registrationData = {
 					user: {
 						name: name,
 						email: email,
 						password: pass,
 						data: {
-							open_source_contribution: participate,
-							media_contribution: media_contribution,
-							teams: teams,
-							peer_review: peer_review,
-							telegram: telegram,
-							token_sale_whitelist: token_sale_whitelist,
-							eth_to_contribute: contribute
+							open_source_contribution: userData.open_source_contribution,
+							media_contribution: userData.media_contribution,
+							teams: userData.teams,
+							peer_review: userData.peer_review,
+							telegram: userData.telegram,
+							token_sale_whitelist: userData.token_sale_whitelist,
+							eth_to_contribute: eth_to_contribute
 						}
 					}
 				};
 				if (inviteCode) registrationData.user.invitation_code = inviteCode;
-				if (participate != '' && contribute != '') {
+				if (participate != '' && eth_to_contribute != '') {
 					$.ajax({
 						url: "https://edn.cityofeden.io/api/users",
 						type: "POST",
@@ -2178,16 +2183,24 @@
 						contentType: "application/json"
 					}).done(function (response) {
 						console.log(response);
-						// sign in
+						//drip registration
 						$.ajax({
-							url: "https://edn.cityofeden.io/api/users/sign_in",
+							url: "https://tokensale.cityofeden.io/drip.php",
 							type: "POST",
-							data: JSON.stringify({ user: { email: email, password: pass } }),
-							contentType: "application/json"
-						}).done(function (response, textStatus, xhr) {
-							$.cookie("token", xhr.getResponseHeader('authorization').split(' ')[1], { expires: 20 * 365, path: '/', domain: '.cityofeden.io' });
+							data: { user: { email: email, name: name, password: pass, open_source_contribution: userData.open_source_contribution, media_contribution: userData.media_contribution, teams: userData.teams, peer_review: userData.peer_review, telegram: userData.telegram, token_sale_whitelist: userData.token_sale_whitelist, eth_to_contribute: eth_to_contribute }},
+						}).done(function (response) {
 							console.log(response);
-							window.location.replace('https://edn.cityofeden.io/?firstLogin=true');
+							// sign in
+							$.ajax({
+								url: "https://edn.cityofeden.io/api/users/sign_in",
+								type: "POST",
+								data: JSON.stringify({ user: { email: email, password: pass } }),
+								contentType: "application/json"
+							}).done(function (response, textStatus, xhr) {
+								$.cookie("token", xhr.getResponseHeader('authorization').split(' ')[1], { expires: 20 * 365, path: '/', domain: '.cityofeden.io' });
+								console.log(response);
+								window.location.replace('https://edn.cityofeden.io/?firstLogin=true');
+							});
 						});
 					});
 				}
